@@ -6,17 +6,18 @@ pipeline {
    stages{
     stage('CompileandRunSonarAnalysis') {
             steps {	
-		sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=adetechapp -Dsonar.organization=adetechapp -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=1e3f6c3f480cce51a6f8a3e8b55de191b817829f'
+		sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=devopapp -Dsonar.organization=devopapp -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=54028be6c5d82fc70c6619cfaf25cdcb912bb157'
 			}
     }
+  
+	// stage('RunSCAAnalysisUsingSnyk') {
+  //           steps {		
+	// 			withCredentials([string(credentialsId: 'SNYK_TOKEN', variable: 'SNYK_TOKEN')]) {
+	// 				sh 'mvn snyk:test -fn'
+	// 			}
+	// 		}
+  //   }	
 
-	stage('RunSCAAnalysisUsingSnyk') {
-            steps {		
-				withCredentials([string(credentialsId: 'SNYK_TOKEN', variable: 'SNYK_TOKEN')]) {
-					sh 'mvn snyk:test -fn'
-				}
-			}
-    }	
 
 // building docker image
 // stage('Build') { 
