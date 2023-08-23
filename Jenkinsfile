@@ -19,7 +19,7 @@ pipeline {
     }	
 
 
-building docker image
+//building docker image
 stage('Build') { 
             steps { 
                withDockerRegistry([credentialsId: "dockerlogin", url: ""]) {
