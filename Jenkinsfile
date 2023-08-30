@@ -10,38 +10,38 @@ pipeline {
 			}
     }
   
-	// stage('RunSCAAnalysisUsingSnyk') {
-  //           steps {		
-	// 			withCredentials([string(credentialsId: 'SNYK_TOKEN', variable: 'SNYK_TOKEN')]) {
-	// 				sh 'mvn snyk:test -fn'
-	// 			}
-	// 		}
-  //   }	
+	stage('RunSCAAnalysisUsingSnyk') {
+            steps {		
+				withCredentials([string(credentialsId: 'SNYK_TOKEN', variable: 'SNYK_TOKEN')]) {
+					sh 'mvn snyk:test -fn'
+				}
+			}
+    }	
 
 
-//building docker image
-// stage('Build') { 
-//             steps { 
-//                withDockerRegistry([credentialsId: "dockerlogin", url: ""]) {
-//                  script{
-//                  app =  docker.build("adegokeimage")
-//                  }
-//                }
-//             }
-//     }
+// building docker image
+stage('Build') { 
+            steps { 
+               withDockerRegistry([credentialsId: "dockerlogin", url: ""]) {
+                 script{
+                 app =  docker.build("ngage007image")
+                 }
+               }
+            }
+    }
 
-	// stage('Push') {
-  //           steps {
-  //               script{
+	stage('Push') {
+            steps {
+                script{
 			
-  //                   docker.withRegistry("https://585943330578.dkr.ecr.us-east-1.amazonaws.com", "ecr:us-east-1:aws-credentials") 
-	// 		{
-  //                   app.push("latest")
-  //                   }
-  //               }
-  //           }
-  //   	}
+                    docker.withRegistry("https://691312647255.dkr.ecr.us-east-1.amazonaws.com", "ecr:us-east-1:aws-credentials") 
+			{
+                    app.push("latest")
+                    }
+                }
+            }
+    	}
 
 
   }
-}
+ 
